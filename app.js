@@ -30,7 +30,7 @@ Test this function by hand in the console to get it working, and when you think 
 // Write your code here
 function multiply(a, b) { //eslint-disable-line
     var result = a * b;
-    var message = 'The product of ' + a + ' and ' + b + ' is ' + result + '.'; 
+    var message = 'The product of ' + a + ' and ' + b + ' is ' + result + '.';
     return [result, message]; // should be good
 }
 
@@ -54,7 +54,7 @@ Test this function by hand in the console to get it working, and when you think 
 function sumAndMultiply(a, b, c) { //eslint-disable-line
     var addThem = sum(sum(a,b)[0],c);
     var product = multiply(multiply(a,b)[0],c);
-    var addMessage = a + ' and ' + b + ' and ' + c + ' sum to ' + addThem[0] + '.'; 
+    var addMessage = a + ' and ' + b + ' and ' + c + ' sum to ' + addThem[0] + '.';
     var productMessage = 'The product of ' + a + ' and ' + b + ' and ' + c + ' is ' + product[0] + '.';
 
     return [addThem[0], product[0], addMessage, productMessage];
@@ -79,18 +79,18 @@ Test this function by hand in the console to get it working, and when you think 
 var testArray = [2, 3, 4]; //eslint-disable-line
 
 function sumArray(sumArr) { //eslint-disable-line
-    var tempResult = 0; 
+    var tempResult = 0;
     var tempMessage = '';
-    // sumArr[sumArr.length] = 0; 
+    // sumArr[sumArr.length] = 0;
 
     for(var i = 0; i < sumArr.length; i++) { // problem if sumArr is only 1 element?
         tempResult = sum(tempResult, sumArr[i])[0];
         tempMessage += sumArr[i] + ',';
     }
-    tempMessage = tempMessage.substring(0,tempMessage.length -1); 
-    tempMessage += ' was passed in as an array of numbers, and ' + tempResult + ' is their sum.'; 
+    tempMessage = tempMessage.substring(0,tempMessage.length -1);
+    tempMessage += ' was passed in as an array of numbers, and ' + tempResult + ' is their sum.';
     // if sumArr is only 1 element, function will work but the grammer won't be correct
-    // if sumArr has no elements, function will NOT work, code run will be broken. 
+    // if sumArr has no elements, function will NOT work, code run will be broken.
     return [tempResult, tempMessage];
 } // end function sumArray(sumArr)
 
@@ -115,21 +115,21 @@ function multiplyArray(multArr) { //eslint-disable-line
     var tempResult = 1;
     var tempMessage = '';
 
-    for (var i = 0; i < multArr.length; i++) {
-        tempResult = multiply(tempResult, multArr[i])[0]; 
+    for (var i = 0; i < multArr.length; i++) { // unsure how it handles array length of 0
+        tempResult = multiply(tempResult, multArr[i])[0];
         tempMessage += multArr[i] + ',';
     }
-    tempMessage = tempMessage.substring(0, tempMessage.length - 1); 
+    tempMessage = tempMessage.substring(0, tempMessage.length - 1);
     tempMessage = 'The numbers ' + tempMessage + ' have a product of ' + tempResult + '.';
 
-    return[tempResult, tempMessage]; 
-} // end function mltiplyArray
+    return[tempResult, tempMessage];
+} // end function multiplyArray
 
 
 // Here is the test for multiplyArray(); uncomment it to run it
 testMultiplyArray(testArray);
 
-// Once you get the test passing, do an a-c-p cycle and synchronize the code between GitHub and your laptop. 
+// Once you get the test passing, do an a-c-p cycle and synchronize the code between GitHub and your laptop.
 
 // You're done! Submit the link to the repo following the instructions in Canvas. Or, try out the stretch goal below...
 
@@ -151,10 +151,18 @@ Test this function by hand in the console to get it working, and when you think 
 var testDynamicArray = [1, 2, 3, 4, 5]; //eslint-disable-line
 
 function multiplyAnyArray(dynamicArray) { //eslint-disable-line
+    var [tempResult, tempMessage] = multiplyArray(dynamicArray);
+    
+    if (dynamicArray.length < 1) { 
+        tempResult = 0; 
+        tempMessage = 'Your list has ' + dynamicArray.length + ' items. This does not work in this function';
+    }
 
-}
+    return[tempResult, tempMessage];
+} // end function multiplyAnyArray
+
 
 // Here is the test for multiplyArray(); uncomment it to run it
-// testMultiplyAnyArray(testDynamicArray);
+testMultiplyAnyArray(testDynamicArray);
 
 // Once you get the test passing, do an a-c-p cycle and synchronize the code between GitHub and your laptop. You're done! Submit the link to the repo following the instructions in Canvas.
